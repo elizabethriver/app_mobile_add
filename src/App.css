@@ -19,4 +19,13 @@ h2{
   font-size: 0.75rem;
 }
 
+@media only screen and (min-width: 600px) {
+  main {
+    max-width: 600px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+}
+
 

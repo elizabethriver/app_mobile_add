@@ -1,26 +1,34 @@
-import React from 'react'
+import React from "react";
 
 export const ContactForm = () => {
   return (
-    <form className="row">
-    <div className="col">
-      <label htmlFor="staticName" className="p-2">
-        Name
-        <input
-          type="text"
-          className="form-control form-control-sm"
-          id="staticName"
-        />
-      </label>
-      <label htmlFor="inputMobile" className="p-2">
-        Telephone mobile
-        <input
-          type="text"
-          className="form-control form-control-sm"
-          id="inputMobile"
-        />
-      </label>
-    </div>
-  </form>
-  )
-}
+    <form>
+      <div>
+        <label htmlFor="staticName">
+          First Name
+          <input
+            type="text"
+            className="form-control form-control-sm"
+            id="staticName"
+          />
+        </label>
+        <label htmlFor="staticLastName">
+          Last Name
+          <input
+            type="text"
+            className="form-control form-control-sm"
+            id="staticLastName"
+          />
+        </label>
+        <label htmlFor="inputMobile">
+          Telephone mobile
+          <input
+            type="text"
+            className="form-control form-control-sm"
+            id="inputMobile"
+          />
+        </label>
+      </div>
+    </form>
+  );
+};
