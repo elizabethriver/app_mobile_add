@@ -13,8 +13,6 @@ export const ModalComponent = ({ show, handleClose }) => {
       <Modal.Body>
         <ContactForm />
       </Modal.Body>
-      <Modal.Footer>
-      </Modal.Footer>
     </Modal>
   );
 };

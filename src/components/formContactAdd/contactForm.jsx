@@ -9,12 +9,13 @@ export const ContactForm = () => {
     lastName: "",
     phoneMobile: "",
   });
+
   const onChangeInputsForm = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInputsForm({ ...inputsForm, [name]: value });
-    console.log(inputsForm);
   };
+
   const submitAddContact = (e) => {
     e.preventDefault();
     postContact(
@@ -30,6 +31,7 @@ export const ContactForm = () => {
         document.getElementById("mssg").innerHTML = err.response.data.message;
       });
   };
+  
   return (
     <>
       <form>

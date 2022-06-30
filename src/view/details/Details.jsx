@@ -1,29 +1,29 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
-import { FaPhoneAlt, FaSave } from "react-icons/fa";
+import { FaSave } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateContactByID } from "../../api";
-import { EditMode } from "../../editor";
 import { Button } from "./../../components/button/button";
 
-export const Details = (item) => {
-    let navigate = useNavigate();
+export const Details = () => {
+  let navigate = useNavigate();
   let params = useParams();
+
   const [inputsForm, setInputsForm] = useState({
     firstName: "",
     lastName: "",
     phoneMobile: "",
   });
-  console.log(params.contactId);
+
   const onChangeInputsForm = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInputsForm({ ...inputsForm, [name]: value });
-    console.log(inputsForm);
   };
-  const cancelUpdatedContact = () =>{
-    navigate('/')
-  }
+
+  const cancelUpdatedContact = () => {
+    navigate("/");
+  };
+  
   const submitUpdate = (e) => {
     e.preventDefault();
     updateContactByID(
@@ -34,15 +34,13 @@ export const Details = (item) => {
     )
       .then((result) => {
         document.getElementById("mssg").innerHTML = result.data.message;
-        navigate('/')
-
+        navigate("/");
       })
       .catch((err) => {
         document.getElementById("mssg").innerHTML =
-        "This number telephone is duplicated";
+          "This number telephone is duplicated";
         setTimeout(() => {
-            document.getElementById("mssg").innerHTML =
-            "";
+          document.getElementById("mssg").innerHTML = "";
         }, 5000);
       });
   };
