@@ -32,19 +32,45 @@ export const postContact = async (firstName, lastName, phoneMobile) => {
 };
 
 export const deleteContactByID = async (id) => {
-    let response = null;
-  
-    try {
- 
-      response = await axios.delete(
-        `https://app-phone-crud.herokuapp.com/contact/${id}`,
-      );
-      console.log(response)
-      return response;
-    } catch (error) {
-      // handle error
-      response = error.response;
-      console.log(response)
-      throw error;
-    }
-  };
+  let response = null;
+
+  try {
+    response = await axios.delete(
+      `https://app-phone-crud.herokuapp.com/contact/${id}`
+    );
+    console.log(response);
+    return response;
+  } catch (error) {
+    // handle error
+    response = error.response;
+    console.log(response);
+    throw error;
+  }
+};
+
+export const updateContactByID = async (
+  contactID,
+  firstName,
+  lastName,
+  phoneMobile
+) => {
+  let response = null;
+  try {
+    const data = {
+      firstName,
+      lastName,
+      phoneMobile,
+    };
+    response = await axios.put(
+      `https://app-phone-crud.herokuapp.com/contact/${contactID}`,
+      data
+    );
+    console.log(response);
+    return response;
+  } catch (error) {
+    // handle error
+    response = error.response;
+    console.log(response);
+    throw error;
+  }
+};

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./../button/button";
 import { FaSave } from "react-icons/fa";
-import { postContact } from "../../api";
+import { dashboard, postContact } from "../../api";
 
 export const ContactForm = () => {
   const [inputsForm, setInputsForm] = useState({
@@ -24,6 +24,7 @@ export const ContactForm = () => {
     )
       .then((result) => {
         document.getElementById("mssg").innerHTML = result.data.message;
+        window.location.reload("false");
       })
       .catch((err) => {
         document.getElementById("mssg").innerHTML = err.response.data.message;
