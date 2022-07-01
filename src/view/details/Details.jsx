@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { FaSave } from "react-icons/fa";
+import { MdCancel, MdCheck } from "react-icons/md";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateContactByID } from "../../api";
 import { Button } from "./../../components/button/button";
+import './Details.css'
 
 export const Details = () => {
   let navigate = useNavigate();
@@ -23,7 +24,7 @@ export const Details = () => {
   const cancelUpdatedContact = () => {
     navigate("/");
   };
-  
+
   const submitUpdate = (e) => {
     e.preventDefault();
     updateContactByID(
@@ -47,7 +48,7 @@ export const Details = () => {
 
   return (
     <main>
-      <form>
+      <form onSubmit={ submitUpdate}>
         <fieldset>
           <label htmlFor="staticName">
             First Name
@@ -58,6 +59,9 @@ export const Details = () => {
               value={inputsForm.firstName}
               onChange={onChangeInputsForm}
               name="firstName"
+              required
+              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+              title="Just type letters is allowed"
             />
           </label>
           <label htmlFor="staticLastName">
@@ -69,36 +73,44 @@ export const Details = () => {
               value={inputsForm.lastName}
               onChange={onChangeInputsForm}
               name="lastName"
+              required
+              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+              title="Just type letters is allowed"
             />
           </label>
           <label htmlFor="inputMobile">
             Telephone mobile
             <input
-              type="text"
+              type="tel"
               className="form-control form-control-sm"
               id="phoneMobile"
               value={inputsForm.phoneMobile}
               onChange={onChangeInputsForm}
               name="phoneMobile"
+              required
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"            
+              title="Just type numbers are allowed"
             />
+            <small>Format: 123-456-7890</small>
           </label>
           <div className="buttons_container">
             <Button
               type="submit"
               onclick={cancelUpdatedContact}
+              btnPrimary='btn-warning'
               children={
                 <>
-                  <FaSave className="pr-2" />
+                  <MdCancel className="pr-2" />
                   <small>Cancel</small>
                 </>
               }
             />
             <Button
               type="submit"
-              onclick={submitUpdate}
+              btnPrimary='btn-success'
               children={
                 <>
-                  <FaSave className="pr-2" />
+                  <MdCheck className="pr-2" />
                   <small>Save</small>
                 </>
               }

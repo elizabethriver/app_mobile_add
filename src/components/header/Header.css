@@ -1,0 +1,7 @@
+.header-title-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--varCoral);
+    color: var(--varWhite);
+  }

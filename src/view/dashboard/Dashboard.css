@@ -1,0 +1,23 @@
+.contact-section-add-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .contact-section-search-container{
+    padding: 1rem;
+  }
+
+  .containerTitle{
+    width: 80%;
+  }
+
+  .h6{
+    font-size: 0.8rem;
+  }
+  .input_form{
+    width: 100%;
+  }
+  .card-body:hover{
+    background-color: var(--varBlueLight);
+  }

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaTrashAlt, FaPhoneAlt } from "react-icons/fa";
 import { Button, Card } from "react-bootstrap";
+import { MdUpdate } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ModalComponent } from "../../components/modal/modal";
 import { dashboard, deleteContactByID } from "../../api";
+import './Dashboard.css'
 
 export const Dashboard = () => {
   let navigate = useNavigate();
@@ -17,7 +19,9 @@ export const Dashboard = () => {
   useEffect(() => {
     dashboard()
       .then((resp) => setContactList(resp.data))
-      .catch((error) => {throw error});
+      .catch((error) => {
+        throw error;
+      });
   }, []);
 
   const deleteUser = (e) => {
@@ -26,7 +30,9 @@ export const Dashboard = () => {
       .then((resp) => {
         window.location.reload("false");
       })
-      .catch((error) => {throw error});
+      .catch((error) => {
+        throw error;
+      });
   };
 
   const UdpateUser = (e) => {
@@ -59,13 +65,14 @@ export const Dashboard = () => {
         <ModalComponent show={show} handleClose={handleClose} />
       </div>
       <div className="contact-section-search-container">
-        <form className="d-flex align-items-center justify-content-center">
+        <form className="d-flex align-items-center">
           <FaSearch />
           <input
             type="search"
             value={searchItem}
             onChange={searchParms}
             placeholder="Filter your contact"
+            className="input_form"
           />
         </form>
       </div>
@@ -82,35 +89,37 @@ export const Dashboard = () => {
                   >
                     <Card style={{ width: "auto" }}>
                       <Card.Body className="d-flex align-items-center justify-content-between">
-                        <div>
+                        <div className="containerTitle">
                           <Card.Title>
-                            {item.firstname}
-                            {""}
-                            {item.lastname}
+                            {item.firstname} {item.lastname}
                           </Card.Title>
                           <Card.Subtitle className=" text-muted">
                             <FaPhoneAlt className="me-2" />
                             {item.numberphone}
                           </Card.Subtitle>
                         </div>
-                        <div>
+                        <div className="d-flex">
                           <button
                             type="button"
-                            className="btn btn-danger"
+                            className="btn btn-danger btn-sm m-1"
                             onClick={deleteUser}
                             id={`${item.contactid}`}
                           >
-                            <FaTrashAlt className="m-auto" />
-                            <small>Delete</small>
+                            <div>
+                              <FaTrashAlt className="m-auto" />
+                              <small>Delete</small>
+                            </div>
                           </button>
                           <button
                             type="button"
-                            className="btn btn-warning"
+                            className="btn btn-warning btn-sm m-1"
                             onClick={UdpateUser}
                             id={`${item.contactid}`}
                           >
-                            <FaTrashAlt className="m-auto" />
-                            <small>Update</small>
+                            <div>
+                              <FaTrashAlt className="m-auto" />
+                              <small>Update</small>
+                            </div>
                           </button>
                         </div>
                       </Card.Body>
@@ -128,35 +137,37 @@ export const Dashboard = () => {
                   >
                     <Card style={{ width: "auto" }}>
                       <Card.Body className="d-flex align-items-center justify-content-between">
-                        <div>
+                        <div className="containerTitle">
                           <Card.Title>
-                            {item.firstname}
-                            {""}
-                            {item.lastname}
+                            {item.firstname} {item.lastname}
                           </Card.Title>
-                          <Card.Subtitle className=" text-muted">
+                          <Card.Subtitle className=" text-muted h6">
                             <FaPhoneAlt className="me-2" />
                             {item.numberphone}
                           </Card.Subtitle>
                         </div>
-                        <div>
+                        <div className="d-flex">
                           <button
                             type="button"
-                            className="btn btn-danger"
+                            className="btn btn-danger btn-sm m-1"
                             onClick={deleteUser}
                             id={`${item.contactid}`}
                           >
-                            <FaTrashAlt className="m-auto" />
-                            <small>Delete</small>
+                            <div>
+                              <FaTrashAlt className="m-auto" />
+                              <small>Delete</small>
+                            </div>
                           </button>
                           <button
                             type="button"
-                            className="btn btn-warning"
+                            className="btn btn-warning btn-sm m-1"
                             onClick={UdpateUser}
                             id={`${item.contactid}`}
                           >
-                            <FaTrashAlt className="m-auto" />
-                            <small>Update</small>
+                            <div>
+                              <MdUpdate className="m-auto" />
+                              <small>Update</small>
+                            </div>
                           </button>
                         </div>
                       </Card.Body>

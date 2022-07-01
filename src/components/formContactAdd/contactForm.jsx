@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./../button/button";
-import { FaSave } from "react-icons/fa";
-import { dashboard, postContact } from "../../api";
+import { MdDone } from "react-icons/md";
+import { postContact } from "../../api";
 
 export const ContactForm = () => {
   const [inputsForm, setInputsForm] = useState({
@@ -31,10 +31,10 @@ export const ContactForm = () => {
         document.getElementById("mssg").innerHTML = err.response.data.message;
       });
   };
-  
+
   return (
     <>
-      <form>
+      <form onSubmit={submitAddContact}>
         <fieldset>
           <label htmlFor="staticName">
             First Name
@@ -45,6 +45,9 @@ export const ContactForm = () => {
               value={inputsForm.firstName}
               onChange={onChangeInputsForm}
               name="firstName"
+              required
+              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+              title="Just type letters is allowed"
             />
           </label>
           <label htmlFor="staticLastName">
@@ -56,30 +59,38 @@ export const ContactForm = () => {
               value={inputsForm.lastName}
               onChange={onChangeInputsForm}
               name="lastName"
+              required
+              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+              title="Just type letters is allowed"
             />
           </label>
           <label htmlFor="inputMobile">
             Telephone mobile
             <input
-              type="text"
+              type="tel"
               className="form-control form-control-sm"
               id="phoneMobile"
               value={inputsForm.phoneMobile}
               onChange={onChangeInputsForm}
               name="phoneMobile"
+              required
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              title="Just type numbers are allowed"
             />
+            <small>Format: 123-456-7890</small>
           </label>
-          <div className="col">
+          <div className="align-items-end m-3">
             <Button
               type="submit"
-              onclick={submitAddContact}
+              size="sm"
+              btnPrimary="btn-success"
               children={
                 <>
-                  <FaSave className="pr-2" />
+                  <MdDone className="pr-2" />
                   <small>Save</small>
                 </>
               }
-            ></Button>
+            />
           </div>
         </fieldset>
       </form>

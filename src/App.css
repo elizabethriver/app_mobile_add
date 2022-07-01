@@ -1,27 +1,15 @@
+:root{
+  --varCoral: #FF7F50;
+  --varWhite: #FFF;
+  --varBlueLight: #fcede8;
 
-.header-title-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-section-add-container{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-}
-.buttons_container{
-  display: flex;
-    justify-content: space-around;
-    padding: 10px;
 }
 
 h1{
-  font-size: 1rem;
+  font-size: 2rem;
 }
 h2{
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 fieldset{
   display: flex;
