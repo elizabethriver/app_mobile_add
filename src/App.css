@@ -16,6 +16,11 @@ fieldset{
     flex-direction: column;
 }
 
+#mssg{
+  color: var(--varCoral);
+  font-weight: 600;
+}
+
 @media only screen and (min-width: 600px) {
   main {
     max-width: 600px;
@@ -24,5 +29,6 @@ fieldset{
     padding: 10px;
   }
 }
+
 
 

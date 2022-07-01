@@ -5,7 +5,8 @@ import { MdUpdate } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ModalComponent } from "../../components/modal/modal";
 import { dashboard, deleteContactByID } from "../../api";
-import './Dashboard.css'
+import "./Dashboard.css";
+import { Loading } from "../../components/loading/Loading";
 
 export const Dashboard = () => {
   let navigate = useNavigate();
@@ -13,12 +14,16 @@ export const Dashboard = () => {
   const [contactList, setContactList] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const [loading, setLoanding] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
     dashboard()
-      .then((resp) => setContactList(resp.data))
+      .then((resp) => {
+        setContactList(resp.data);
+        setLoanding(false);
+      })
       .catch((error) => {
         throw error;
       });
@@ -78,103 +83,107 @@ export const Dashboard = () => {
       </div>
       <div>
         <ul className="list-group">
-          {searchItem.length > 1
-            ? filteredResults.map((item) => {
-                return (
-                  <li
-                    className="list-group-item"
-                    id={`${item.contactid}`}
-                    key={`${item.contactid}`}
-                    name={`${item.contactid}`}
-                  >
-                    <Card style={{ width: "auto" }}>
-                      <Card.Body className="d-flex align-items-center justify-content-between">
-                        <div className="containerTitle">
-                          <Card.Title>
-                            {item.firstname} {item.lastname}
-                          </Card.Title>
-                          <Card.Subtitle className=" text-muted">
-                            <FaPhoneAlt className="me-2" />
-                            {item.numberphone}
-                          </Card.Subtitle>
-                        </div>
-                        <div className="d-flex">
-                          <button
-                            type="button"
-                            className="btn btn-danger btn-sm m-1"
-                            onClick={deleteUser}
-                            id={`${item.contactid}`}
-                          >
-                            <div>
-                              <FaTrashAlt className="m-auto" />
-                              <small>Delete</small>
-                            </div>
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-warning btn-sm m-1"
-                            onClick={UdpateUser}
-                            id={`${item.contactid}`}
-                          >
-                            <div>
-                              <FaTrashAlt className="m-auto" />
-                              <small>Update</small>
-                            </div>
-                          </button>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </li>
-                );
-              })
-            : contactList.map((item) => {
-                return (
-                  <li
-                    className="list-group-item"
-                    id={`${item.contactid}`}
-                    key={`${item.contactid}`}
-                    name={`${item.contactid}`}
-                  >
-                    <Card style={{ width: "auto" }}>
-                      <Card.Body className="d-flex align-items-center justify-content-between">
-                        <div className="containerTitle">
-                          <Card.Title>
-                            {item.firstname} {item.lastname}
-                          </Card.Title>
-                          <Card.Subtitle className=" text-muted h6">
-                            <FaPhoneAlt className="me-2" />
-                            {item.numberphone}
-                          </Card.Subtitle>
-                        </div>
-                        <div className="d-flex">
-                          <button
-                            type="button"
-                            className="btn btn-danger btn-sm m-1"
-                            onClick={deleteUser}
-                            id={`${item.contactid}`}
-                          >
-                            <div>
-                              <FaTrashAlt className="m-auto" />
-                              <small>Delete</small>
-                            </div>
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-warning btn-sm m-1"
-                            onClick={UdpateUser}
-                            id={`${item.contactid}`}
-                          >
-                            <div>
-                              <MdUpdate className="m-auto" />
-                              <small>Update</small>
-                            </div>
-                          </button>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </li>
-                );
-              })}
+          {searchItem.length > 1 ? (
+            filteredResults.map((item) => {
+              return (
+                <li
+                  className="list-group-item"
+                  id={`${item.contactid}`}
+                  key={`${item.contactid}`}
+                  name={`${item.contactid}`}
+                >
+                  <Card style={{ width: "auto" }}>
+                    <Card.Body className="d-flex align-items-center justify-content-between">
+                      <div className="containerTitle">
+                        <Card.Title>
+                          {item.firstname} {item.lastname}
+                        </Card.Title>
+                        <Card.Subtitle className=" text-muted">
+                          <FaPhoneAlt className="me-2" />
+                          {item.numberphone}
+                        </Card.Subtitle>
+                      </div>
+                      <div className="d-flex">
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm m-1"
+                          onClick={deleteUser}
+                          id={`${item.contactid}`}
+                        >
+                          <div>
+                            <FaTrashAlt className="m-auto" />
+                            <small>Delete</small>
+                          </div>
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-warning btn-sm m-1"
+                          onClick={UdpateUser}
+                          id={`${item.contactid}`}
+                        >
+                          <div>
+                            <FaTrashAlt className="m-auto" />
+                            <small>Update</small>
+                          </div>
+                        </button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </li>
+              );
+            })
+          ) : loading ? (
+            <Loading loading={loading} />
+          ) : (
+            contactList.map((item) => {
+              return (
+                <li
+                  className="list-group-item"
+                  id={`${item.contactid}`}
+                  key={`${item.contactid}`}
+                  name={`${item.contactid}`}
+                >
+                  <Card style={{ width: "auto" }}>
+                    <Card.Body className="d-flex align-items-center justify-content-between">
+                      <div className="containerTitle">
+                        <Card.Title>
+                          {item.firstname} {item.lastname}
+                        </Card.Title>
+                        <Card.Subtitle className=" text-muted h6">
+                          <FaPhoneAlt className="me-2" />
+                          {item.numberphone}
+                        </Card.Subtitle>
+                      </div>
+                      <div className="d-flex">
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm m-1"
+                          onClick={deleteUser}
+                          id={`${item.contactid}`}
+                        >
+                          <div>
+                            <FaTrashAlt className="m-auto" />
+                            <small>Delete</small>
+                          </div>
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-warning btn-sm m-1"
+                          onClick={UdpateUser}
+                          id={`${item.contactid}`}
+                        >
+                          <div>
+                            <MdUpdate className="m-auto" />
+                            <small>Update</small>
+                          </div>
+                        </button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </li>
+              );
+            })
+          )}
         </ul>
       </div>
     </main>

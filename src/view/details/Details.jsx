@@ -48,7 +48,7 @@ export const Details = () => {
 
   return (
     <main>
-      <form onSubmit={ submitUpdate}>
+      <form onSubmit={ submitUpdate} className='p-4'>
         <fieldset>
           <label htmlFor="staticName">
             First Name
