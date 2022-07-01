@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Getting Started: App Contact agenda
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project fullstack, called Contact agenda, and it consist create, update and delete your contact saved at database. It is a first mobile app, so it will be easy to see in your mobile. 
 
-## Available Scripts
+### From client side
 
-In the project directory, you can run:
+In this case, this app is build with Reactjs, making some petitions to API contacts with Axios.js.
+At this project is build also with css and bootstrap and react bootstrap, and react spinners too!
 
-### `npm start`
+Visit here [https://app-mobile-add.vercel.app/](https://app-mobile-add.vercel.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### `How to run`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Just make a npm i and then a npm start at your [http://localhost:3000](http://localhost:3000)
 
-### `npm test`
+### From backend side
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+From the backend side, this app has a API CRUD, with Postgresql, nodejs, express and cors. And finally, this app was deployed at Heroku. It was a funny app to build! 
 
-### `npm run build`
+Visit here [https://app-phone-crud.herokuapp.com/](https://app-phone-crud.herokuapp.com/)
+#### `How to run`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Just make this petition CRUD in Postman with [https://app-phone-crud.herokuapp.com/](https://app-phone-crud.herokuapp.com/), and make some request:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### `Post`
+HTTP request: POST
+URI: https://app-phone-crud.herokuapp.com/contacts
+Request body:
+{
+    "firstName": "Ana", 
+    "lastName": "Julia", 
+    "phoneMobile": "233333"
+}
+##### `Get`
+HTTP request: GET
+URI: https://app-phone-crud.herokuapp.com/contacts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### `Update`
+HTTP request: PUT
+URI: https://app-phone-crud.herokuapp.com/contact/CONTACTID
+Request body:
+{
+    "firstName": "Ana", 
+    "lastName": "Julia", 
+    "phoneMobile": "233333"
+}
+##### `Delete`
+HTTP request: DELETE
+URI: https://app-phone-crud.herokuapp.com/contact/CONTACTID
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
